@@ -5,6 +5,8 @@ package com.company;
 import java.util.Scanner;
 
 public class Main {
+
+
     public static double logab(double a, double b) {
         return Math.log(b) / Math.log(a);
     }
@@ -14,6 +16,7 @@ public class Main {
         System.out.println("Введите 1 чтобы перейти к элементарным операциям");
         System.out.println("Введите 2 чтобы перейти к триганометрическим операциям");
         System.out.println("Введите 3 чтобы перейти к операциям с log");
+        System.out.println("Введите 4 чтобы перейти к операциям над матрицами");
         Scanner scanner = new Scanner(System.in);
         byte sk = scanner.nextByte();
 
@@ -142,6 +145,44 @@ public class Main {
                 double n = (logab(b, a)) - (logab(c, a));
                 System.out.println("log b/c по основанию a: " + n);
             }
+        }
+        if (sk == 4) {
+            Scanner str = new Scanner(System.in);
+            System.out.println("Введите количество строк в матрице: ");
+            int n = str.nextInt();//Считываем количество строк n
+            System.out.println("Введите количество столбцов в матрице: ");
+            int m = str.nextInt();//Считываем количество столбцов m
+            int[][] arr = new int[n][m];//n - количество строк, m - столбцов
+            System.out.println("Введите элементы мастрицы(программма заполняет с лева на право построчно ");
+            for (int i = 0; i < n; i++) {//Внешний цыкл заполняет строки
+                for (int j = 0; j < m; j++)//Внутренний цыкл заполняет столбцы
+                    arr[i][j] = str.nextInt();
+            }//for для строк
+            System.out.println("Начальная матрица");
+            System.out.println();
+            for (int i = 0; i < n; i++) {
+                for (int j = 0; j < m; j++) {
+                    System.out.printf("%10d", arr[i][j]);//вывод массива
+                }
+                System.out.println();
+            }
+            for (int i = 0; i < n; i++) {
+                for (int j = i + 1; j < n; j++) {
+                    int matrix = arr[i][j];//запоминаем рабочий элемент в переменную matrix
+                    arr[i][j] = arr[j][i];// меняем местами элементы матрицы
+                    arr[j][i] = matrix;//присваевам переменной matrix значение после транспонирования
+                }
+            }
+            System.out.println("Транспонированная матрица");
+            System.out.println();
+            for (int i = 0; i < n; i++) {
+                for (int j = 0; j < m; j++) {
+                    System.out.printf("%10d", arr[i][j]);//вывод транспонированной матрицы
+                }
+                System.out.println();
+            }
+
+
         }
 
 
